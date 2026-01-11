@@ -17,8 +17,8 @@ const Slider = () => {
         {
             id: 1,
             backgroundImage: electricianImg,
-            h1: 'Book Trusted Electricians for Fast and Reliable Home Services',
-            h2: 'Expert solutions for all your electrical needs, from minor repairs to full house rewiring.',
+            h1: 'Book Trusted Electricians in Hyderabad for Fast Home Services',
+            h2: 'Expert solutions for all your electrical needs, from Madhapur to Secunderabad.',
             h1Color: 'text-white',
             h2Color: 'text-gray-200',
             gradient: 'from-black/70 via-black/30 to-transparent'
@@ -26,8 +26,8 @@ const Slider = () => {
         {
             id: 2,
             backgroundImage: plumbingImg,
-            h1: 'Professional Plumbing Services You Can Count On',
-            h2: 'From leak repairs to new installations, our certified plumbers ensure your home runs smoothly.',
+            h1: 'Hyderabad\'s Professional Plumbing Services You Can Count On',
+            h2: 'From Gachibowli to Banjara Hills, our plumbers ensure your home runs smoothly.',
             h1Color: 'text-white',
             h2Color: 'text-blue-50',
             gradient: 'from-blue-900/70 via-blue-900/40 to-transparent'
@@ -35,8 +35,8 @@ const Slider = () => {
         {
             id: 3,
             backgroundImage: acRepairImg,
-            h1: 'Beat the Heat with Expert AC Repair & Installation',
-            h2: 'Fast, efficient cooling solutions to keep your home comfortable all year round.',
+            h1: 'Beat the Hyderabad Heat with Expert AC Repair',
+            h2: 'Fast, efficient cooling solutions for homes in Jubilee Hills and Kondapur.',
             h1Color: 'text-white',
             h2Color: 'text-gray-100',
             gradient: 'from-indigo-900/70 via-indigo-900/40 to-transparent'
@@ -125,7 +125,7 @@ const Slider = () => {
                         {/* Content Container */}
                         <div className="relative container mx-auto px-6 md:px-12 lg:px-20 z-10 text-left">
                             <div className="max-w-4xl space-y-4 md:space-y-6">
-                            
+
                                 <h1 className={`${slide.h1Color} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 leading-tight drop-shadow-2xl`}>
                                     {slide.h1}
                                 </h1>

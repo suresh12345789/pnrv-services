@@ -4,27 +4,27 @@ import { ChevronLeft, ChevronRight, Star, CheckCircle, Shield, Award, Clock, Arr
 const professionals = [
     {
         id: 1,
-        name: "David Wilson",
+        name: "Suresh Reddy",
         title: "Master Electrician",
         rating: 4.9,
         reviews: 503,
-        experience: "7+ Years",
-        description: "Specializing in smart home installations and full-house rewiring. Certified and insured expert delivering precision and safety for every modern home project.",
+        experience: "12+ Years",
+        description: "Specializing in smart home installations in Hi-Tech City and Gachibowli. Certified expert delivering safety for every Hyderabad home.",
         tags: ["Smart Home", "Rewiring", "Installation"],
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?auto=format&fit=crop&q=80&w=400",
         verified: true,
         bgAccent: "from-orange-500/20 to-transparent"
     },
     {
         id: 2,
-        name: "Sarah Chen",
+        name: "Anjali Goud",
         title: "Licensed Plumber",
-        rating: 3.5,
+        rating: 4.5,
         reviews: 450,
-        experience: "3+ Years",
-        description: "Expert in emergency leak repairs and modern bathroom fixtures. Fast, reliable service with an eye for detail and sustainable water solutions.",
+        experience: "8+ Years",
+        description: "Expert in emergency repairs in Banjara Hills. Fast, reliable service with deep knowledge of Hyderabad's water systems.",
         tags: ["Emergency", "Bathroom", "Leak Repair"],
-        image: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&q=80&w=400",
         verified: true,
         bgAccent: "from-blue-500/20 to-transparent"
     },
@@ -124,7 +124,7 @@ const ProfessionalsSlider = () => {
                                         {/* Floating Rating Card */}
                                         <div className="absolute bottom-10 right-10 z-20 bg-white/10 backdrop-blur-2xl border border-white/20 p-4 rounded-xl shadow-2xl animate-fade-in">
                                             <div className="flex items-center gap-4">
-                                              
+
                                                 <div>
                                                     <div className="flex items-center gap-1">
                                                         <Star className="w-3 h-3 text-orange-400 fill-orange-400" />
@@ -161,7 +161,7 @@ const ProfessionalsSlider = () => {
                                             <div className="bg-white/5 border border-white/10 p-6 rounded-3xl group/stat hover:bg-white/10 transition-colors">
                                                 <Shield className="w-8 h-8 text-orange-500 mb-4 group-hover/stat:scale-110 transition-transform" />
                                                 <h4 className="text-white font-bold text-lg mb-1">Guaranteed</h4>
-                                                <p className="text-gray-500 text-sm">Every job is insured up to $1M</p>
+                                                <p className="text-gray-500 text-sm">Every job is insured up to ₹10 Lakhs</p>
                                             </div>
                                             <div className="bg-white/5 border border-white/10 p-6 rounded-3xl group/stat hover:bg-white/10 transition-colors">
                                                 <Award className="w-8 h-8 text-blue-500 mb-4 group-hover/stat:scale-110 transition-transform" />
@@ -172,7 +172,7 @@ const ProfessionalsSlider = () => {
 
                                         {/* CTA Button */}
                                         <div className="pt-4">
-                                            <button className="group/btn relative w-full overflow-hidden bg-white text-gray-900 font-black py-6 rounded-[2rem] text-xl transition-all hover:scale-[1.02] active:scale-95 shadow-2xl flex items-center justify-center gap-4">
+                                            <button className="group/btn relative w-full overflow-hidden bg-white text-gray-900 font-black py-6 rounded-4xl text-xl transition-all hover:scale-[1.02] active:scale-95 shadow-2xl flex items-center justify-center gap-4">
                                                 <div className="absolute inset-0 bg-orange-500 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
                                                 <span className="relative z-10 group-hover/btn:text-white transition-colors duration-500">Book Expert Session</span>
                                                 <ArrowRight className="relative z-10 w-6 h-6 group-hover/btn:text-white group-hover/btn:translate-x-2 transition-all duration-500" />

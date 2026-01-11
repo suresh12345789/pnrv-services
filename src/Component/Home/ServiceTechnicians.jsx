@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { Star, Search, X,  Calendar, ShieldCheck,  Check } from 'lucide-react';
+import { Star, Search, X, Calendar, ShieldCheck, Check } from 'lucide-react';
 import { technicians } from '../../Data/technicians';
 
-const ServiceTechnicians = ({ selectedCategory, onBack }) => {
+const ServiceTechnicians = ({ selectedCategory, onBack, onTechSelect }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [priceRange, setPriceRange] = useState(1000);
     const [ratingFilter, setRatingFilter] = useState(0);
@@ -38,7 +38,7 @@ const ServiceTechnicians = ({ selectedCategory, onBack }) => {
             <div className="max-w-7xl mx-auto">
 
                 {/* 1. Header Navigation & Title */}
-      
+
 
                 <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-12">
 
@@ -73,14 +73,14 @@ const ServiceTechnicians = ({ selectedCategory, onBack }) => {
                                     <input
                                         type="range"
                                         min="30"
-                                        max="1000"
+                                        max="5000"
                                         className="w-full h-2 bg-slate-800 rounded-full appearance-none cursor-pointer accent-orange-500"
                                         value={priceRange}
                                         onChange={(e) => setPriceRange(parseInt(e.target.value))}
                                     />
-                                  
+
                                 </div>
-                            </div> 
+                            </div>
 
                             {/* Ratings Filter */}
                             <div className="space-y-6">
@@ -135,8 +135,8 @@ const ServiceTechnicians = ({ selectedCategory, onBack }) => {
                         {/* Elite High-Demand Groups Section */}
                         {largeGroups.length > 0 && !searchTerm && (
                             <div className="space-y-8 animate-slide-up">
-                              
-                            
+
+
                             </div>
                         )}
 
@@ -145,7 +145,7 @@ const ServiceTechnicians = ({ selectedCategory, onBack }) => {
                             <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-orange-500 transition-colors" size={24} />
                             <input
                                 type="text"
-                                placeholder="Search by name, specialist or skill..."
+                                placeholder="Search Hyderabad's top specialists (Kukatpally, Madhapur...)"
                                 className="w-full bg-slate-900 border border-white/10 rounded-3xl py-3 pl-16 pr-8 text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-bold text-lg"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -171,12 +171,12 @@ const ServiceTechnicians = ({ selectedCategory, onBack }) => {
                                             <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-slate-900 to-transparent" />
                                             <div className="absolute bottom-6 right-6 z-20">
                                                 <div className="bg-orange-500 text-white font-black px-6 py-3 rounded-2xl text-2xl shadow-2xl shadow-orange-500/20">
-                                                    ${tech.rate}<span className="text-[10px] opacity-80 uppercase tracking-tighter">/hr</span>
+                                                    ₹{tech.rate}<span className="text-[10px] opacity-80 uppercase tracking-tighter">/hr</span>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="p-5 flex flex-col flex-1 space-y-8">
+                                        <div className="p-10 flex flex-col flex-1 space-y-8">
                                             <div className="space-y-4">
                                                 <div className="flex items-center gap-2 text-[10px] font-black text-orange-500 uppercase tracking-[0.3em]">
                                                     <ShieldCheck size={14} /> Master Professional
@@ -186,12 +186,18 @@ const ServiceTechnicians = ({ selectedCategory, onBack }) => {
                                                     <div className="flex items-center gap-2 text-xs font-black text-slate-500 uppercase tracking-widest">
                                                         <Star size={12} className="text-orange-500 fill-orange-500" /> {tech.rating} <span className="opacity-30">|</span> {tech.reviews} Reviews
                                                     </div>
+                                                    <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                                                        <span className="text-orange-500/80">●</span> {tech.location}
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                        
 
-                                            <button className="w-full mt-auto relative overflow-hidden group/btn bg-white text-slate-950 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all hover:scale-[1.03] active:scale-95 shadow-2xl flex items-center justify-center gap-3">
+
+                                            <button
+                                                onClick={() => onTechSelect && onTechSelect(tech)}
+                                                className="w-full mt-auto relative overflow-hidden group/btn bg-white text-slate-950 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all hover:scale-[1.03] active:scale-95 shadow-2xl flex items-center justify-center gap-3"
+                                            >
                                                 <div className="absolute inset-0 bg-orange-500 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
                                                 <Calendar className="relative z-10 group-hover/btn:text-white transition-colors" size={18} />
                                                 <span className="relative z-10 group-hover/btn:text-white transition-colors">Book Now</span>
