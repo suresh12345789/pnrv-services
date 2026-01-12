@@ -12,21 +12,22 @@ import Contact from './Pages/Contact'
 function App() {
   return (
     <div>
-    <Router>
-      
+      <Router>
+
         <Navbar />
-       
-          <Routes>
-            <Route path="/" element={<Homepages />} />
-            <Route path="/about" element={<Aboutpages />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/booking" element={<Bookingpages />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-    
+
+        <Routes>
+          <Route path="/" element={<Homepages />} />
+          <Route path="/about" element={<Aboutpages />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/booking" element={<Bookingpages />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Contact />} />
+        </Routes>
+
         <Footer />
-    
-    </Router>
+
+      </Router>
     </div>
   )
 }

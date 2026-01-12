@@ -11,6 +11,7 @@ const Navbar = () => {
         { name: 'About', path: '/about' },
         { name: 'Services', path: '/services' },
         { name: 'Contact', path: '/contact' },
+        { name: 'Login', path: '/login' },
     ];
 
     const isActive = (path) => location.pathname === path;
@@ -53,8 +54,8 @@ const Navbar = () => {
                                     key={link.name}
                                     to={link.path}
                                     className={`text-[13px] lg:text-sm font-bold uppercase tracking-widest transition-all duration-300 relative group py-2 ${isActive(link.path)
-                                            ? 'text-white'
-                                            : 'text-orange-100 hover:text-white'
+                                        ? 'text-white'
+                                        : 'text-orange-100 hover:text-white'
                                         }`}
                                 >
                                     {link.name}
@@ -107,8 +108,8 @@ const Navbar = () => {
                             to={link.path}
                             onClick={() => setIsOpen(false)}
                             className={`block px-6 py-4 rounded-2xl text-base font-black uppercase tracking-widest transition-all ${isActive(link.path)
-                                    ? 'bg-white text-orange-600 shadow-lg'
-                                    : 'text-white hover:bg-white/10'
+                                ? 'bg-white text-orange-600 shadow-lg'
+                                : 'text-white hover:bg-white/10'
                                 }`}
                         >
                             {link.name}

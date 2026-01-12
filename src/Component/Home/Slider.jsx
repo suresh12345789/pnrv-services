@@ -8,6 +8,8 @@ import acRepairImg from '../../assets/images/Home/AC Repair_Installation.png';
 import paintingImg from '../../assets/images/Home/House_Painting.png';
 import cctvImg from '../../assets/images/Home/CCTV Installation.png';
 
+import { Link } from 'react-router-dom';
+
 const Slider = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [touchStart, setTouchStart] = useState(null);
@@ -133,12 +135,18 @@ const Slider = () => {
                                     {slide.h2}
                                 </p>
                                 <div className="flex flex-wrap gap-4 pt-4 md:pt-8">
-                                    <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 md:px-10 py-2 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-orange-500/30 active:scale-95 transform hover:-translate-y-1">
+                                    <Link
+                                        to="/booking"
+                                        className="bg-orange-500 hover:bg-orange-600 text-white px-8 md:px-10 py-2 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-orange-500/30 active:scale-95 transform hover:-translate-y-1 inline-flex items-center justify-center"
+                                    >
                                         Book Now
-                                    </button>
-                                    <button className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 md:px-10 py-4 rounded-2xl text-lg font-bold transition-all active:scale-95">
+                                    </Link>
+                                    <Link
+                                        to="/services"
+                                        className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 md:px-10 py-4 rounded-2xl text-lg font-bold transition-all active:scale-95 inline-flex items-center justify-center"
+                                    >
                                         View All Services
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

@@ -2,223 +2,207 @@ import React, { useState } from 'react';
 import {
     Star, MapPin, CheckCircle, Share2, Heart, Award, Users,
     ShieldCheck, Clock, Calendar, MessageSquare, ChevronRight,
-    ArrowLeft, Map as MapIcon, StarHalf, ThumbsUp
+    ArrowLeft, Map as MapIcon, StarHalf, ThumbsUp, Shield, Zap, TrendingUp
 } from 'lucide-react';
 
 const TechnicianProfile = ({ technician, onBack, onBook }) => {
     const [activeTab, setActiveTab] = useState('Overview');
 
-    // Sample data for the profile details (in a real app, this would come from an API or expanded data file)
     const profileDetails = {
-        bio: `With over ${technician?.experience || '10+'} of experience in the industry, I specialize in both residential and commercial ${technician?.category || 'service'} systems. My commitment is to provide prompt, high-quality repairs with transparent pricing. I take pride in my work and ensure that every job site is left cleaner than I found it. Whether it's a minor leak or a full system installation, I've got you covered.`,
+        bio: `With over ${technician?.experience || '10+'} of experience in the industry, I specialize in both residential and commercial ${technician?.category || 'service'} systems. I am committed to delivering excellence through precision and transparency in every project.`,
         specialties: [
-            { id: 1, name: "System Diagnostics", desc: "Full inspection and error mapping.", icon: "ShieldCheck" },
-            { id: 2, name: "Emergency Repairs", desc: "24/7 rapid response for critical issues.", icon: "Clock" },
-            { id: 3, name: "New Installation", desc: "Professional setup of modern hardware.", icon: "Calendar" },
-            { id: 4, name: "General Maintenance", desc: "Regular checkups to prevent failures.", icon: "CheckCircle" }
+            { id: 1, name: "Advanced Diagnostics", icon: <Shield className="w-5 h-5" /> },
+            { id: 2, name: "Emergency Response", icon: <Zap className="w-5 h-5" /> },
+            { id: 3, name: "Premium Installation", icon: <Award className="w-5 h-5" /> }
         ],
-        reviews: [
-            { id: 1, name: "Sarah Richards", date: "2 days ago", rating: 5, text: "Extremely professional! Arrived right on time for the issue and had it fixed within 30 minutes. Highly recommend!", avatar: "https://i.pravatar.cc/100?img=1" },
-            { id: 2, name: "Michael Thompson", date: "1 week ago", rating: 5, text: "Excellent service for our property. Expertise and detailed explanation of the work done was evident immediately.", avatar: "https://i.pravatar.cc/100?img=2" }
-        ],
-        jobsDone: 842,
-        serviceArea: ["Kondapur", "Madhapur", "Gachibowli", "Jubilee Hills", "Banjara Hills"]
+        stats: [
+            { label: "Jobs Done", value: "842+", icon: <Users size={16} /> },
+            { label: "Success Rate", value: "99%", icon: <TrendingUp size={16} /> },
+            { label: "Experience", value: technician?.experience || "10+ Yrs", icon: <Clock size={16} /> }
+        ]
     };
 
     if (!technician) return null;
 
     return (
         <div className="min-h-screen bg-slate-950 text-slate-200 py-12 px-4 md:px-8 lg:px-12 animate-fade-in mt-16 pb-24">
-            <div className="max-w-7xl mx-auto space-y-8">
+            <div className="max-w-7xl mx-auto space-y-10">
 
-                {/* Breadcrumbs & Back */}
+                {/* Header Actions */}
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500">
-                        <span className="hover:text-orange-500 cursor-pointer transition-colors" onClick={onBack}>Search</span>
-                        <ChevronRight size={12} />
-                        <span>{technician.category}</span>
-                        <ChevronRight size={12} />
-                        <span className="text-orange-500">{technician.name}</span>
-                    </div>
                     <button
                         onClick={onBack}
-                        className="flex items-center gap-2 text-xs font-black uppercase tracking-widest bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl border border-white/5 transition-all"
+                        className="group flex items-center gap-3 text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all bg-white/5 px-5 py-3 rounded-2xl border border-white/10 hover:bg-white/10"
                     >
-                        <ArrowLeft size={14} /> Back to List
+                        <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Experts
                     </button>
+                    <div className="flex gap-3">
+                        <button className="p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-slate-400 hover:text-orange-500 transition-all">
+                            <Heart size={20} />
+                        </button>
+                        <button className="p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-slate-400 hover:text-blue-500 transition-all">
+                            <Share2 size={20} />
+                        </button>
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8">
+                {/* Main Hero Card - 300px Balanced Split */}
+                <div className="flex flex-col lg:flex-row h-auto lg:h-[300px] rounded-[2.5rem] bg-slate-900 border border-white/10 shadow-2xl overflow-hidden group">
 
-                    {/* LEFT COLUMN: Main Info */}
-                    <div className="space-y-8">
+                    {/* Left Side: Profile Identity */}
+                    <div className="w-full lg:w-1/2 relative h-[350px] lg:h-full overflow-hidden">
+                        <img
+                            src={technician.image}
+                            alt={technician.name}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/40 to-transparent lg:bg-linear-to-r lg:from-slate-950 lg:via-slate-950/20 lg:to-transparent" />
 
-                        {/* 1. Hero Profile Card */}
-                        <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl">
-                            {/* Cover Image Placeholder with Gradient */}
-                            <div className="h-48 bg-linear-to-r from-orange-600/20 to-blue-600/20 relative">
-                                <div className="absolute inset-0 backdrop-blur-3xl opacity-50" />
+                        <div className="absolute bottom-8 left-8 lg:left-12 space-y-3">
+                            <div className="flex items-center gap-3">
+                                <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase">{technician.name}</h1>
+                                <CheckCircle size={28} className="text-blue-500 bg-white rounded-full border-2 border-white" />
                             </div>
-
-                            <div className="px-8 pb-10 relative">
-                                {/* Profile Picture Overlay */}
-                                <div className="absolute -top-16 left-8 group">
-                                    <div className="w-10 h-10 rounded-3xl border-8 border-slate-900 overflow-hidden shadow-2xl transform group-hover:scale-105 transition-transform">
-                                        <img src={technician.image} alt={technician.name} className="w-full h-full object-cover" />
-                                    </div>
-                                    {technician.status === 'online' && (
-                                        <div className="absolute bottom-2 -right-1 w-6 h-6 bg-green-500 border-4 border-slate-900 rounded-full shadow-lg pulse-green" />
-                                    )}
-                                </div>
-
-                                {/* Info & Actions */}
-                                <div className="flex flex-col md:flex-row justify-between items-start pt-20 gap-6">
-                                    <div className="space-y-4">
-                                        <div className="space-y-1">
-                                            <div className="flex items-center gap-3">
-                                                <h1 className="text-4xl font-black text-white uppercase tracking-tighter">{technician.name}</h1>
-                                                <CheckCircle size={24} className="text-blue-500 fill-blue-500/20" />
-                                            </div>
-                                            <p className="text-xl font-bold text-orange-500 uppercase tracking-widest">{technician.category} Specialist</p>
-                                        </div>
-
-                                        <div className="flex flex-wrap gap-4 text-sm font-bold text-slate-400">
-                                            <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-xl border border-white/5 text-xs uppercase tracking-widest">
-                                                <MapPin size={14} className="text-orange-500" /> Greater Hyderabad Area
-                                            </div>
-                                            <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-xl border border-white/5 text-xs uppercase tracking-widest">
-                                                <ShieldCheck size={14} className="text-blue-500" /> Licensed
-                                            </div>
-                                            <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-xl border border-white/5 text-xs uppercase tracking-widest">
-                                                <Award size={14} className="text-yellow-500" /> Top Rated 2024
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex gap-4">
-                                        <button className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl transition-all">
-                                            <Share2 size={20} />
-                                        </button>
-                                        <button className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl transition-all text-orange-500">
-                                            <Heart size={20} />
-                                        </button>
-                                    </div>
-                                </div>
-
-                                {/* Quick Stats Grid */}
-                                <div className="grid grid-cols-3 gap-4 mt-10 pt-10 border-t border-white/5">
-                                    <div className="text-center space-y-1 group">
-                                        <div className="text-3xl font-black text-white group-hover:text-orange-500 transition-colors">{profileDetails.jobsDone}</div>
-                                        <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Jobs Done</div>
-                                    </div>
-                                    <div className="text-center space-y-1 border-x border-white/5 group">
-                                        <div className="text-3xl font-black text-white group-hover:text-orange-500 transition-colors">{technician.rating}/5</div>
-                                        <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Rating</div>
-                                    </div>
-                                    <div className="text-center space-y-1 group">
-                                        <div className="text-3xl font-black text-white group-hover:text-orange-500 transition-colors">{technician.experience}</div>
-                                        <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Exp. Level</div>
-                                    </div>
+                            <div className="flex items-center gap-3">
+                                <span className="px-4 py-1.5 bg-orange-500 text-white rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl shadow-orange-500/20">
+                                    Master {technician.category}
+                                </span>
+                                <div className="flex items-center gap-1.5 text-orange-400">
+                                    <Star size={18} fill="currentColor" />
+                                    <span className="text-lg font-black">{technician.rating}</span>
+                                    <span className="text-xs font-bold text-slate-500 uppercase">({technician.reviews} reviews)</span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* 2. Content Tabs */}
-                        <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl p-8 space-y-10">
-                            <div className="flex gap-8 border-b border-white/5">
-                                {['Overview', 'Services', 'Reviews', 'Photos'].map(tab => (
+                        {technician.status === 'online' && (
+                            <div className="absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-green-500/10 backdrop-blur-md border border-green-500/30 rounded-full">
+                                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                                <span className="text-[10px] font-black text-green-500 uppercase tracking-widest">Active Now</span>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Right Side: Quick Stats & Call to Action */}
+                    <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center bg-slate-900/50 backdrop-blur-sm relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+
+                        <div className="grid grid-cols-3 gap-4 mb-8">
+                            {profileDetails.stats.map((stat, idx) => (
+                                <div key={idx} className="flex flex-col items-center p-4 bg-white/5 rounded-3xl border border-white/5">
+                                    <div className="text-orange-500 mb-2">{stat.icon}</div>
+                                    <div className="text-xl font-black text-white">{stat.value}</div>
+                                    <div className="text-[9px] font-black text-slate-500 uppercase tracking-widest">{stat.label}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <button
+                                onClick={() => onBook && onBook(technician)}
+                                className="flex-1 bg-white text-slate-950 hover:bg-orange-500 hover:text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest transition-all transform active:scale-95 shadow-xl hover:shadow-orange-500/20 flex items-center justify-center gap-3"
+                            >
+                                <Calendar size={18} /> Book Appointment
+                            </button>
+                            <button className="px-8 bg-white/5 hover:bg-white/10 border border-white/10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-3">
+                                <MessageSquare size={18} /> Chat
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Sub Content Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+                    {/* Detailed Info */}
+                    <div className="lg:col-span-2 space-y-8">
+                        <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] p-10 space-y-10 shadow-xl">
+                            <div className="flex gap-10 border-b border-white/5">
+                                {['Overview', 'Specialties', 'Reviews'].map(tab => (
                                     <button
                                         key={tab}
                                         onClick={() => setActiveTab(tab)}
-                                        className={`pb-4 text-sm font-black uppercase tracking-[0.2em] relative transition-all ${activeTab === tab ? 'text-orange-500' : 'text-slate-500 hover:text-slate-300'}`}
+                                        className={`pb-5 text-[10px] font-black uppercase tracking-[0.3em] relative transition-all ${activeTab === tab ? 'text-orange-500' : 'text-slate-500 hover:text-slate-300'}`}
                                     >
                                         {tab}
-                                        {activeTab === tab && <div className="absolute bottom-0 left-0 w-full h-1 bg-orange-500 rounded-full" />}
+                                        {activeTab === tab && <div className="absolute bottom-[-2px] left-0 w-full h-1 bg-orange-500 rounded-full" />}
                                     </button>
                                 ))}
                             </div>
 
                             {activeTab === 'Overview' && (
-                                <div className="space-y-12 animate-fade-in">
-                                    {/* About Me */}
-                                    <div className="space-y-5">
-                                        <h3 className="text-2xl font-black uppercase tracking-tighter">About Me</h3>
-                                        <p className="text-slate-400 leading-relaxed font-medium text-lg">
-                                            {profileDetails.bio}
-                                        </p>
+                                <div className="space-y-8 animate-fade-in">
+                                    <p className="text-lg text-slate-400 font-medium leading-relaxed">
+                                        {profileDetails.bio}
+                                    </p>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="flex gap-4 items-start p-6 bg-white/5 rounded-3xl border border-white/5">
+                                            <ShieldCheck size={28} className="text-blue-500 shrink-0" />
+                                            <div>
+                                                <h4 className="text-white font-black text-sm uppercase mb-1">Service Guarantee</h4>
+                                                <p className="text-xs text-slate-500 font-bold">30-day warranty on all completed repairs and installations.</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex gap-4 items-start p-6 bg-white/5 rounded-3xl border border-white/5">
+                                            <MapPin size={28} className="text-orange-500 shrink-0" />
+                                            <div>
+                                                <h4 className="text-white font-black text-sm uppercase mb-1">Local Reach</h4>
+                                                <p className="text-xs text-slate-500 font-bold">Serving Madhapur, Gachibowli, and Jubilee Hills areas.</p>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
+                            )}
 
+                            {activeTab === 'Specialties' && (
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
+                                    {profileDetails.specialties.map(spec => (
+                                        <div key={spec.id} className="p-8 bg-white/5 rounded-[2rem] border border-white/5 text-center space-y-4 hover:bg-orange-500/5 hover:border-orange-500/20 transition-all">
+                                            <div className="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center text-orange-500 mx-auto">
+                                                {spec.icon}
+                                            </div>
+                                            <h4 className="text-white font-black text-sm uppercase tracking-wider">{spec.name}</h4>
+                                        </div>
+                                    ))}
                                 </div>
                             )}
                         </div>
                     </div>
 
-                    {/* RIGHT COLUMN: Sidebar */}
-                    <aside className="space-y-8">
-
-                        {/* Booking Card */}
-                        <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] p-10 space-y-10 shadow-2xl overflow-hidden relative group">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-bl-full group-hover:bg-orange-500/20 transition-colors" />
+                    {/* Pricing & Quick Booking Detail */}
+                    <div className="space-y-8">
+                        <div className="bg-linear-to-br from-orange-500 to-orange-600 rounded-[2.5rem] p-10 text-white shadow-2xl shadow-orange-500/20 relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-bl-full group-hover:scale-110 transition-transform" />
 
                             <div className="space-y-6 relative z-10">
-                                <div className="space-y-2">
-                                    <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Starts From</div>
+                                <div className="space-y-1">
+                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] opacity-80">Hourly Rate</div>
                                     <div className="flex items-baseline gap-2">
-                                        <span className="text-6xl font-black text-white tracking-tighter">₹{technician.rate}</span>
-                                        <span className="text-sm font-black text-slate-500">/hr</span>
+                                        <span className="text-6xl font-black tracking-tighter">₹{technician.rate}</span>
+                                        <span className="text-sm font-black opacity-80">/hr</span>
                                     </div>
                                 </div>
-
-                                {technician.status === 'online' && (
-                                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl shadow-green-500/20">
-                                        <CheckCircle size={14} /> Available Now
+                                <div className="h-px bg-white/20" />
+                                <div className="space-y-4">
+                                    <div className="flex justify-between items-center text-xs font-black uppercase tracking-widest">
+                                        <span className="opacity-80">Next Available</span>
+                                        <span>Tomorrow</span>
                                     </div>
-                                )}
-                            </div>
-
-                            <div className="space-y-6 pt-10 border-t border-white/5 relative z-10">
-                                <div className="flex items-center gap-4 p-5 bg-white/5 rounded-3xl border border-white/5">
-                                    <div className="w-12 h-12 flex items-center justify-center bg-orange-500/10 rounded-2xl text-orange-500">
-                                        <Calendar size={24} />
-                                    </div>
-                                    <div>Total
-                                        <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Next available</div>
-                                        <div className="text-sm font-black text-white">Tomorrow, 9:00 AM</div>
+                                    <div className="flex justify-between items-center text-xs font-black uppercase tracking-widest">
+                                        <span className="opacity-80">Response Time</span>
+                                        <span>&lt; 30 Mins</span>
                                     </div>
                                 </div>
-
-                                <div className="flex items-center gap-4 p-5 bg-white/5 rounded-3xl border border-white/5">
-                                    <div className="w-12 h-12 flex items-center justify-center bg-blue-500/10 rounded-2xl text-blue-500">
-                                        <ShieldCheck size={24} />
-                                    </div>
-                                    <div>
-                                        <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Service Guarantee</div>
-                                        <div className="text-sm font-black text-white">30-Day Fix Warranty</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="space-y-4 pt-4 relative z-10">
-                                <button
-                                    onClick={() => onBook && onBook(technician)}
-                                    className="w-full relative overflow-hidden group/btn bg-orange-500 text-white py-6 rounded-3xl font-black text-xs uppercase tracking-[0.4em] transition-all hover:scale-[1.03] active:scale-95 shadow-2xl shadow-orange-500/30 flex items-center justify-center gap-3"
-                                >
-                                    <Calendar size={18} className="relative z-10" />
-                                    <span className="relative z-10">Book Appointment</span>
+                                <button className="w-full bg-white text-orange-600 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl transition-all hover:scale-105 active:scale-95">
+                                    Instant Message
                                 </button>
-                                <button className="w-full bg-white/5 hover:bg-white/10 border border-white/10 text-white py-6 rounded-3xl font-black text-xs uppercase tracking-[0.4em] transition-all flex items-center justify-center gap-3">
-                                    <MessageSquare size={18} />
-                                    <span>Message {technician.name.split(' ')[0]}</span>
-                                </button>
-                                <p className="text-[10px] text-center text-slate-600 font-black uppercase tracking-widest">No payment required until job completion.</p>
                             </div>
                         </div>
 
-                        {/* Service Area Card */}
 
-
-                    </aside>
+                    </div>
                 </div>
+
             </div>
         </div>
     );

@@ -4,7 +4,7 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaRegEnvelope, FaUse
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-50 dark:bg-[#080c14] border-t border-gray-100 dark:border-white/5 pt-20 pb-10">
+        <footer className="bg-gray-50 dark:bg-[#080c14]   border-t border-gray-100 dark:border-white/5 mt-10 pt-20 pb-10">
             <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
                     {/* Brand Info & Newsletter */}
@@ -23,24 +23,7 @@ const Footer = () => {
                             </p>
                         </div>
 
-                        {/* Login / Sign-in Field Section */}
-                        <div className="space-y-4">
-                            <h4 className="text-gray-900 dark:text-white font-bold text-sm uppercase tracking-[0.2em]">Member Access</h4>
-                            <div className="relative max-w-md group">
-                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                    <FaRegEnvelope className="text-gray-400 group-focus-within:text-orange-500 transition-colors" />
-                                </div>
-                                <input
-                                    type="email"
-                                    placeholder="Enter your email/ID to Sign-in"
-                                    className="w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-white/10 rounded-2xl py-4 pl-12 pr-32 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 dark:text-white transition-all shadow-xs"
-                                />
-                                <button className="absolute right-2 top-2 bottom-2 bg-orange-500 hover:bg-orange-600 text-white px-6 rounded-xl text-xs font-bold transition-all shadow-lg shadow-orange-500/20 active:scale-95">
-                                    Login Now
-                                </button>
-                            </div>
-                            <p className="text-xs text-gray-400 font-medium">Don't have an account? <Link to="/contact" className="text-orange-500 hover:underline">Register as a Pro</Link></p>
-                        </div>
+
 
                         {/* Social Links */}
                         <div className="flex space-x-4">
@@ -56,7 +39,7 @@ const Footer = () => {
                     <div className="mt-4 md:mt-0">
                         <h3 className="text-gray-900 dark:text-white font-black text-sm uppercase tracking-[0.2em] mb-8">Navigation</h3>
                         <ul className="space-y-4">
-                            {['Home', 'About', 'Services', 'Booking', 'Contact'].map((item) => (
+                            {['Home', 'About', 'Services', 'Booking', 'Contact', 'Login'].map((item) => (
                                 <li key={item}>
                                     <Link
                                         to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
@@ -109,16 +92,8 @@ const Footer = () => {
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="border-t border-gray-100 dark:border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-sm">
-                    <p className="text-gray-400 font-medium">© 2026 <span className="text-gray-900 dark:text-white font-black">PRNV SERVICES</span>. Craftsman Excellence.</p>
-                    <div className="flex items-center space-x-8">
-                        <a href="#" className="text-gray-400 hover:text-orange-500 font-bold transition-colors">Privacy Policy</a>
-                        <a href="#" className="text-gray-400 hover:text-orange-500 font-bold transition-colors">Terms of Service</a>
-                        <div className="h-4 w-px bg-gray-200 dark:bg-white/10 hidden md:block" />
-                        <span className="text-gray-400 font-medium">v1.2.4</span>
-                    </div>
-                </div>
+
+
             </div>
         </footer>
     );
